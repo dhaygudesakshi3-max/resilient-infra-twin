@@ -4,7 +4,7 @@ AI-powered Digital Twin platform for infrastructure monitoring and predictive ma
 
 > **SIMULATION MODE:** All sensor data in this project is simulated. No physical sensors are connected.
 
-**Live demo:** https://yourusername.github.io/resilient-infra-twin/
+**Live demo:** https://github.com/dhaygudesakshi3-max/resilient-infra-twin/tree/main
 
 ## Overview
 Resilient Infra-Twin transforms infrastructure maintenance from a reactive process into a predictive, AI-driven system. It monitors an aging bridge through a digital twin, combines sensor readings, and highlights components at risk so maintenance can be planned before failures happen.
