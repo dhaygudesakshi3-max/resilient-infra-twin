@@ -1,0 +1,172 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Resilient Infra-Twin</title><style>:root{--bg:#060d1f;--cy:#22d3ee;--bl:#3b82f6;--tx:#e6edf7;--mu:#8fa3c0;--g:#22c55e;--y:#facc15;--o:#fb923c;--r:#ef4444;--gl:rgba(255,255,255,.055);--bd:rgba(125,211,252,.16)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#10305e55,transparent),var(--bg);color:var(--tx);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;min-height:100vh}
+a{color:var(--cy);text-decoration:none}h1,h2,h3{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.2rem,5.5vw,4rem)}h2{font-size:clamp(1.5rem,3vw,2.1rem)}h3{font-size:1.05rem;color:#cfe3ff}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.sim{background:linear-gradient(90deg,#78350f,#92400e);color:#fde68a;font-size:.78rem;text-align:center;padding:5px 10px;letter-spacing:.04em}
+.hdr{position:sticky;top:0;z-index:50;background:#060d1fcc;backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.hdr .wrap{display:flex;align-items:center;gap:18px;height:64px}
+.brand{font-weight:800;color:#fff;font-size:1.15rem;display:flex;gap:8px;align-items:center;white-space:nowrap}
+.brand i{width:26px;height:26px;border-radius:7px;background:conic-gradient(from 200deg,var(--cy),var(--bl),var(--cy));display:inline-block}
+.nav{margin-left:auto}.nav ul{list-style:none;display:flex;gap:2px;margin:0;padding:0;flex-wrap:wrap;justify-content:flex-end}
+.nav a{color:var(--mu);font-size:.8rem;padding:6px 9px;border-radius:8px;display:block}
+.nav a:hover,.nav .current-menu-item a,.nav .current_page_item a{color:#fff;background:var(--gl)}
+.tg{display:none;margin-left:auto;background:var(--gl);border:1px solid var(--bd);color:#fff;border-radius:8px;padding:6px 12px;font-size:1rem}
+@media(max-width:1100px){.tg{display:block}.nav{display:none;position:absolute;top:64px;left:0;right:0;background:#07122b;padding:10px 20px;border-bottom:1px solid var(--bd)}.nav.open{display:block}.nav ul{flex-direction:column}.hdr .wrap{position:relative}}
+main{padding:34px 0 70px}
+.glass,.card{background:var(--gl);border:1px solid var(--bd);border-radius:16px;backdrop-filter:blur(12px);box-shadow:0 10px 40px #0006}
+.card{padding:20px}.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.g6{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.ph{margin-bottom:26px}.ph p{color:var(--mu);max-width:70ch;margin:0}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;padding:30px 0 40px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+.hero h1{background:linear-gradient(120deg,#fff 30%,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mu);font-size:1.1rem;max-width:56ch}
+.btn{display:inline-block;padding:12px 22px;border-radius:12px;font-weight:600;border:1px solid var(--bd);color:#fff;background:var(--gl);cursor:pointer;font-size:.92rem;margin:0 8px 8px 0}
+.btn.p{background:linear-gradient(120deg,var(--bl),var(--cy));color:#03121f;border:0;box-shadow:0 8px 30px #22d3ee44}
+.btn.sm{padding:6px 12px;font-size:.78rem;margin:0 6px 0 0;border-radius:8px}
+.stat{padding:18px}.stat b{display:block;font-size:2.1rem;line-height:1.1}.stat span{color:var(--mu);font-size:.85rem}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.74rem;font-weight:700;color:var(--c);border:1px solid var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}
+.chart{width:100%;height:auto;display:block}.chart text{fill:var(--mu);font-size:11px}
+.ln{fill:none;stroke-width:2.4;stroke-dasharray:1600;stroke-dashoffset:1600;animation:dr 1.6s ease forwards}@keyframes dr{to{stroke-dashoffset:0}}
+.twin{width:100%;border-radius:16px;background:linear-gradient(#0a1a3a,#07112a);border:1px solid var(--bd)}
+.part{cursor:pointer}.part rect{transition:filter .2s;stroke-width:1.5}.part:hover rect,.part.sel rect{filter:brightness(1.4) drop-shadow(0 0 8px currentColor)}
+.sn{animation:pl 2s infinite}@keyframes pl{50%{opacity:.25}}.wave{animation:wv 6s ease-in-out infinite alternate}@keyframes wv{to{transform:translateX(-30px)}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}.kv dt{color:var(--mu)}.kv dd{margin:0;font-weight:600}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--mu);margin-top:10px}.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--bd)}th{color:var(--mu);font-weight:600;font-size:.78rem}.tw{overflow-x:auto}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.tabs button,select{background:var(--gl);color:var(--tx);border:1px solid var(--bd);border-radius:9px;padding:7px 14px;cursor:pointer;font:inherit;font-size:.85rem}.tabs button.on{background:var(--bl);border-color:var(--cy)}select option{background:#0b1630}
+.alert{display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-left:4px solid var(--c);margin-bottom:12px}.alert .m{flex:1;min-width:220px}.alert small{color:var(--mu)}.alert.done{opacity:.5}
+.flow{display:flex;flex-direction:column;align-items:center;gap:6px}.flow .card{width:min(420px,100%);text-align:center;padding:12px}.flow span{color:var(--cy);font-size:1.3rem}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;border-top:2px solid var(--cy);padding-top:14px}.tl h3{color:var(--cy)}
+.kg text{fill:#fff;font-size:12px;text-anchor:middle;pointer-events:none}.kg .el{fill:var(--mu);font-size:10px}.kg circle{cursor:pointer}.kg line{stroke:#5b7aa8;stroke-width:1.5}
+.rv{opacity:0;transform:translateY(14px);transition:.6s}.rv.in{opacity:1;transform:none}
+.ft{border-top:1px solid var(--bd);padding:26px 0;color:var(--mu);font-size:.85rem;text-align:center}
+.post{margin-bottom:24px}.layout{display:grid;grid-template-columns:1fr 300px;gap:24px}@media(max-width:800px){.layout{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ln{stroke-dashoffset:0}.rv{opacity:1;transform:none}}
+:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.nav ul{list-style:none}</style></head><body>
+<div class="sim">SIMULATION MODE — Demo Sensor Data</div>
+<header class="hdr"><div class="wrap"><a class="brand" href="#home"><i></i>Resilient Infra-Twin</a><button class="tg" aria-label="Menu" aria-expanded="false">☰</button><nav class="nav"><ul><li><a href="#home">Home</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#digital-twin">Digital Twin</a></li><li><a href="#sensor-monitoring">Sensor Monitoring</a></li><li><a href="#ai-risk-prediction">AI Risk Prediction</a></li><li><a href="#knowledge-graph">Knowledge Graph</a></li><li><a href="#predictive-maintenance">Predictive Maintenance</a></li><li><a href="#alerts">Alerts</a></li><li><a href="#infrastructure-assets">Infrastructure Assets</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#technology">Technology</a></li><li><a href="#about">About</a></li></ul></nav></div></header>
+<main><div class="wrap"><div class="ph rv" id="ttl"><h1></h1></div><div id="v" data-view="home"></div></div></main>
+<footer class="ft"><div class="wrap">SIMULATION MODE — Demo Sensor Data. No physical sensors are connected.</div></footer>
+<script>var T={'home': 'Home', 'dashboard': 'Dashboard', 'digital-twin': 'Digital Twin', 'sensor-monitoring': 'Sensor Monitoring', 'ai-risk-prediction': 'AI Risk Prediction', 'knowledge-graph': 'Knowledge Graph', 'predictive-maintenance': 'Predictive Maintenance', 'alerts': 'Alerts', 'infrastructure-assets': 'Infrastructure Assets', 'analytics': 'Analytics', 'technology': 'Technology', 'about': 'About'};var h=(location.hash||'#home').slice(1);if(!T[h])h='home';document.getElementById('v').dataset.view=h;var t=document.querySelector('#ttl h1');if(h==='home')document.getElementById('ttl').remove();else t.textContent=T[h];window.RIT={pages:{"home":"#home","dashboard":"#dashboard","digital-twin":"#digital-twin","sensor-monitoring":"#sensor-monitoring","ai-risk-prediction":"#ai-risk-prediction","knowledge-graph":"#knowledge-graph","predictive-maintenance":"#predictive-maintenance","alerts":"#alerts","infrastructure-assets":"#infrastructure-assets","analytics":"#analytics","technology":"#technology","about":"#about"}};addEventListener('hashchange',function(){location.reload()});</script>
+<script>/* EDIT THIS FILE to change demo data. All values are SIMULATED. */
+window.RIT_DATA={
+ // Sensors: k=name,u=unit,v=value,w=warning threshold,n=live noise,d=decimals
+ sensors:[{k:'Vibration',u:'mm/s',v:2.4,w:4,n:.15,d:1},{k:'Strain',u:'με',v:410,w:400,n:6,d:0},{k:'Temperature',u:'°C',v:34,w:45,n:.3,d:1},{k:'Displacement',u:'mm',v:7.2,w:6,n:.12,d:1},{k:'Tilt',u:'°',v:.12,w:.5,n:.01,d:2},{k:'Crack Width',u:'mm',v:.18,w:.3,n:.005,d:2}],
+ // Digital-twin components: g=[x,y,w,h] inside the SVG; risk = Low/Medium/High/Critical
+ parts:[
+ {id:'D1',name:'Bridge Deck D1',h:78,risk:'Medium',fp:18,rd:'Vibration 2.4 mm/s (Normal)',act:'Routine inspection; keep monitoring vibration.',g:[60,130,680,30]},
+ {id:'B1',name:'Beam B1',h:90,risk:'Low',fp:6,rd:'Strain 210 με',act:'Routine inspection in 90 days.',g:[60,160,680,14]},
+ {id:'C1',name:'Column C1',h:91,risk:'Low',fp:5,rd:'Tilt 0.05°',act:'No action required.',g:[150,174,34,130]},
+ {id:'C2',name:'Column C2',h:85,risk:'Low',fp:9,rd:'Strain 260 με',act:'Routine inspection in 90 days.',g:[383,174,34,130]},
+ {id:'C4',name:'Column C4',h:67,risk:'High',fp:42,rd:'Strain 410 με (Warning) — Sensor S14',act:'Detailed structural inspection within 7 days.',g:[616,174,34,130]},
+ {id:'F1',name:'Foundation F1',h:88,risk:'Low',fp:7,rd:'Settlement 1.1 mm',act:'Annual scour check.',g:[100,304,600,22]},
+ {id:'E1',name:'Expansion Joint E1',h:90,risk:'Low',fp:6,rd:'Displacement 3.1 mm',act:'Routine lubrication.',g:[270,124,10,42]},
+ {id:'E2',name:'Expansion Joint E2',h:80,risk:'Low',fp:8,rd:'Displacement 7.2 mm (Warning)',act:'Schedule replacement within 30 days.',g:[500,124,10,42]}],
+ // Assets: name,type,location,age,health,risk
+ assets:[['Bridge A','Bridge','Pune',28,82,'Medium'],['Bridge B','Bridge','Nashik',12,94,'Low'],['Flyover F1','Flyover','Pune',19,90,'Low'],['Flyover F2','Flyover','Mumbai',33,71,'High'],['Tower T1','Building','Pune',9,96,'Low'],['Tower T2','Building','Hyderabad',41,58,'Critical'],['Hospital Block H1','Building','Nagpur',26,88,'Low'],['Bridge C','Bridge','Kolhapur',52,69,'Medium'],['Viaduct V1','Bridge','Surat',15,92,'Low'],['Dam Gate Complex','Dam','Satara',38,89,'Low'],['Flyover F3','Flyover','Thane',8,95,'Low'],['Metro Pier Line M1','Bridge','Pune',6,97,'Low']],
+ alerts:[['Critical','Abnormal vibration detected in Deck D1.','Bridge A / D1','Today 09:42'],['High','Increasing strain detected in Column C4.','Bridge A / C4','Today 08:15'],['Medium','Expansion joint displacement above expected range.','Bridge A / E2','Yesterday 21:30'],['Low','Temperature sensor T07 battery at 18%.','Bridge A / T07','2 days ago']],
+ maint:[['Bridge A','Column C4','High','Increasing strain','Detailed inspection','Urgent','7 days'],['Bridge A','Expansion Joint E2','Medium','Wear detected','Schedule replacement','Medium','30 days'],['Bridge A','Deck D1','Low','Normal degradation','Routine inspection','Low','90 days'],['Flyover F2','Bearing P3','High','Corrosion progression','Bearing assessment','High','14 days'],['Tower T2','Core Wall W1','Critical','Crack widening','Structural shoring review','Urgent','Today']],
+ anomalies:[3,5,2,8,4,6,9],forecast:[7,5,9,6,4,8],inspections:[4,6,5,8,7,9]
+};
+</script><script>(function(){
+var D=window.RIT_DATA,P=(window.RIT||{}).pages||{};
+var C={Low:'#22c55e',Medium:'#facc15',High:'#fb923c',Critical:'#ef4444'},CY='#22d3ee',BL='#3b82f6';
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var L=function(s){return P[s]||'#'};
+var sd=function(n){var x=Math.sin(n)*1e4;return x-Math.floor(x)};
+var ser=function(b,a,n,s,t){var o=[];for(var i=0;i<n;i++)o.push(+(b+a*(sd(s+i*1.7)-.5)+(t||0)*i/n).toFixed(2));return o};
+var pill=function(r){return '<span class="pill" style="--c:'+C[r]+'">'+r+'</span>'};
+var card=function(t,b,c){return '<div class="card glass '+(c||'')+'"><h3>'+t+'</h3>'+b+'</div>'};
+var stat=function(l,v,c){return '<div class="stat glass"><b style="color:'+(c||'#fff')+'">'+v+'</b><span>'+l+'</span></div>'};
+var head=function(t,p){return '<p style="color:var(--mu);margin:-10px 0 22px;max-width:70ch">'+p+'</p>'};
+var lvl=function(r){return r<25?'Low':r<50?'Medium':r<75?'High':'Critical'};
+/* Risk model: weighted normalised vibration, strain and displacement (simulation) */
+var risk=function(v,s,d){return Math.round(100*(.35*v/7+.35*s/1100+.3*d/24))};
+var RB=risk(2.4,410,7.2),FP=Math.round(RB*.53),HL=100-FP;
+
+/* ---------- chart helpers (pure SVG, no external libs) ---------- */
+function line(ss,cols,h,lb){h=h||190;var w=600,all=[].concat.apply([],ss),mn=Math.min.apply(0,all),mx=Math.max.apply(0,all),r=mx-mn||1,o='<svg class="chart" viewBox="0 0 '+w+' '+h+'">';
+for(var i=0;i<4;i++){var y=10+i*(h-30)/3;o+='<line x1="0" x2="'+w+'" y1="'+y+'" y2="'+y+'" stroke="#fff" opacity=".07"/><text x="2" y="'+(y-3)+'">'+(mx-i*r/3).toFixed(r<5?1:0)+'</text>'}
+ss.forEach(function(s,k){var d='M'+s.map(function(v,i){return(i/(s.length-1)*w).toFixed(1)+','+(h-20-(v-mn)/r*(h-40)).toFixed(1)}).join('L');
+o+='<path d="'+d+'L'+w+','+(h-10)+'L0,'+(h-10)+'Z" fill="'+cols[k]+'" opacity=".1"/><path class="ln" d="'+d+'" stroke="'+cols[k]+'"/>'});
+if(lb)o+='<text x="'+w+'" y="'+(h-1)+'" text-anchor="end">'+lb+'</text>';return o+'</svg>'}
+function bars(lb,vs,cs,h){h=h||190;var w=600,mx=Math.max.apply(0,vs)*1.15,bw=w/vs.length,o='<svg class="chart" viewBox="0 0 '+w+' '+h+'">';
+vs.forEach(function(v,i){var bh=v/mx*(h-40),c=Array.isArray(cs)?cs[i]:cs;o+='<rect x="'+(i*bw+bw*.18)+'" y="'+(h-24-bh)+'" width="'+bw*.64+'" height="'+bh+'" rx="6" fill="'+c+'" opacity=".85"><animate attributeName="height" from="0" to="'+bh+'" dur=".8s"/><animate attributeName="y" from="'+(h-24)+'" to="'+(h-24-bh)+'" dur=".8s"/></rect><text x="'+(i*bw+bw/2)+'" y="'+(h-8)+'" text-anchor="middle">'+lb[i]+'</text><text x="'+(i*bw+bw/2)+'" y="'+(h-28-bh)+'" text-anchor="middle" style="fill:#fff">'+v+'</text>'});return o+'</svg>'}
+function donut(it){var t=it.reduce(function(a,b){return a+b[1]},0),o='<svg class="chart" viewBox="0 0 300 180" style="max-height:200px"><g transform="rotate(-90 90 90)">',off=0,R=60,cf=2*Math.PI*R;
+it.forEach(function(x){var l=x[1]/t*cf;o+='<circle cx="90" cy="90" r="'+R+'" fill="none" stroke="'+x[2]+'" stroke-width="24" stroke-dasharray="'+l+' '+(cf-l)+'" stroke-dashoffset="'+(-off)+'"/>';off+=l});
+o+='</g><text x="90" y="96" text-anchor="middle" style="fill:#fff;font-size:22px;font-weight:700">'+t+'</text>';
+it.forEach(function(x,i){o+='<rect x="190" y="'+(40+i*24)+'" width="10" height="10" rx="2" fill="'+x[2]+'"/><text x="206" y="'+(49+i*24)+'">'+x[0]+' ('+x[1]+')</text>'});return o+'</svg>'}
+function gauge(v,l,c){var a=Math.PI*80;return '<svg class="chart" viewBox="0 0 180 120" style="max-width:220px;margin:auto"><path d="M10 95A80 80 0 0 1 170 95" fill="none" stroke="#fff" opacity=".1" stroke-width="14" stroke-linecap="round"/><path d="M10 95A80 80 0 0 1 170 95" fill="none" stroke="'+c+'" stroke-width="14" stroke-linecap="round" stroke-dasharray="'+(v/100*a)+' '+a+'"><animate attributeName="stroke-dasharray" from="0 '+a+'" to="'+(v/100*a)+' '+a+'" dur="1.2s"/></path><text x="90" y="82" text-anchor="middle" style="fill:#fff;font-size:26px;font-weight:700">'+v+(l==='Risk Score'?'':'%')+'</text><text x="90" y="108" text-anchor="middle">'+l+'</text></svg>'}
+var mons=['Oct','Nov','Dec','Jan','Feb','Mar'],days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+var healthTrend=function(){return line([ser(82,6,30,3,-2)],[CY],190,'Last 30 days')};
+var riskDist=function(){return donut([['Healthy',8,C.Low],['At Risk',3,C.Medium],['Critical',1,C.Critical]])};
+var fpBars=function(){return bars(D.parts.filter(function(p){return/^(D1|C1|C2|C4|E2)/.test(p.id)}).map(function(p){return p.id}),D.parts.filter(function(p){return/^(D1|C1|C2|C4|E2)/.test(p.id)}).map(function(p){return p.fp}),D.parts.filter(function(p){return/^(D1|C1|C2|C4|E2)/.test(p.id)}).map(function(p){return C[p.risk]}))};
+var fcBars=function(){return bars(mons,D.forecast,BL)};
+
+/* ---------- digital twin ---------- */
+function twin(){var s='<svg class="twin" viewBox="0 0 800 360"><defs><pattern id="gp" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#7dd3fc" stroke-opacity=".08"/></pattern></defs><rect width="800" height="360" fill="url(#gp)"/><path class="wave" d="M-30 335Q70 318 170 335T370 335T570 335T770 335T970 335V360H-30Z" fill="#0ea5e9" opacity=".28"/>';
+D.parts.forEach(function(p){var g=p.g,c=C[p.risk];s+='<g class="part" data-c="'+p.id+'" style="color:'+c+'" tabindex="0"><title>'+p.name+'</title><rect x="'+g[0]+'" y="'+g[1]+'" width="'+g[2]+'" height="'+g[3]+'" rx="4" fill="'+c+'" fill-opacity=".35" stroke="'+c+'"/><circle class="sn" cx="'+(g[0]+g[2]/2)+'" cy="'+(g[1]+g[3]/2)+'" r="5" fill="'+c+'"/></g>'});
+D.parts.forEach(function(p){if(/^C|^D1|^F1/.test(p.id))s+='<text x="'+(p.g[0]+p.g[2]/2)+'" y="'+(p.id==='D1'?122:p.g[1]+p.g[3]+(p.id==='F1'?16:14))+'" text-anchor="middle" style="fill:#8fa3c0;font-size:11px">'+p.id+(p.id==='C4'?' · S14':'')+'</text>'});
+return s+'<text x="14" y="24" style="fill:#22d3ee;font-size:12px">DIGITAL TWIN · BRIDGE A · SIMULATED</text></svg>'}
+function panel(p){return '<h2>'+p.name+'</h2><dl class="kv"><dt>Component</dt><dd>'+p.name+'</dd><dt>Health Score</dt><dd>'+p.h+'%</dd><dt>Risk Level</dt><dd>'+pill(p.risk)+'</dd><dt>Sensor Reading</dt><dd>'+p.rd+'</dd><dt>Failure Probability</dt><dd>'+p.fp+'%</dd><dt>Recommended Action</dt><dd>'+p.act+'</dd></dl>'}
+var legend='<div class="leg"><span><i style="background:var(--g)"></i>Healthy</span><span><i style="background:var(--y)"></i>Warning</span><span><i style="background:var(--o)"></i>High Risk</span><span><i style="background:var(--r)"></i>Critical</span></div>';
+function initTwin(root){var pn=$('.tp',root);function sel(id){var p=D.parts.filter(function(x){return x.id===id})[0];$$('.part',root).forEach(function(e){e.classList.toggle('sel',e.dataset.c===id)});pn.innerHTML=panel(p)}
+$$('.part',root).forEach(function(e){e.addEventListener('click',function(){sel(e.dataset.c)});e.addEventListener('keydown',function(k){if(k.key==='Enter')sel(e.dataset.c)})});sel('C4')}
+
+/* ---------- sensors ---------- */
+var st=function(s){return s.v>=s.w*1.5?'Critical':s.v>=s.w?'Medium':'Low'},stl=function(s){var r=st(s);return r==='Low'?'Normal':r==='Medium'?'Warning':'Critical'};
+var RG={'1H':[12,1],'6H':[18,2],'24H':[24,3],'7D':[28,4],'30D':[30,5]};
+function sensorCharts(root,rg){var n=RG[rg][0],k=RG[rg][1];$$('.sp',root).forEach(function(e,i){var s=D.sensors[i];e.innerHTML=line([ser(s.v,s.w*.35,n,k*10+i,s.w*.12)],[st(s)==='Low'?CY:C.Medium],90)});
+$('.mc',root).innerHTML=line(D.sensors.slice(0,4).map(function(s,i){return ser(s.v/s.w*100,22,n,k*10+i,12)}),[CY,C.Medium,C.Low,C.High],220,'% of warning threshold: vibration · strain · temperature · displacement')}
+function liveRisk(){var g=function(k){return D.sensors.filter(function(s){return s.k===k})[0].v};var r=risk(g('Vibration'),g('Strain'),g('Displacement'));return r}
+
+/* ---------- views ---------- */
+var V={};
+V.home=function(){return '<section class="hero"><div class="rv"><h1>Predict Infrastructure Failures Before They Happen.</h1><p>An AI-powered Digital Twin platform combining IoT sensor fusion, Knowledge Graphs and Graph Neural Networks to monitor structural health and predict maintenance requirements.</p><a class="btn p" href="'+L('dashboard')+'">Launch Dashboard</a><a class="btn" href="'+L('digital-twin')+'">Explore Digital Twin</a></div><div class="rv">'+twin()+'</div></section>'+
+'<div class="grid g4 rv">'+stat('Infrastructure Assets',12,CY)+stat('Active Sensors',96,BL)+stat('At Risk',3,C.High)+stat('Critical Alerts',1,C.Critical)+'</div><h2 style="margin-top:46px">One platform, from sensor to decision</h2><div class="grid g3 rv">'+
+[['Digital Twin','Click any bridge component to see health and action.','digital-twin'],['Sensor Monitoring','Six simulated sensor streams with live updates.','sensor-monitoring'],['AI Risk Prediction','Risk scores driven by vibration, strain and displacement.','ai-risk-prediction'],['Knowledge Graph','Trace how a strain reading leads to an inspection.','knowledge-graph'],['Predictive Maintenance','Prioritised actions with due dates.','predictive-maintenance'],['Alerts','Acknowledge, investigate and resolve.','alerts']].map(function(x){return '<a href="'+L(x[2])+'" class="card glass"><h3>'+x[0]+'</h3><span style="color:var(--mu)">'+x[1]+'</span></a>'}).join('')+'</div>'};
+V.dashboard=function(){return head('','Fleet overview — all values are simulated.')+'<div class="grid g6 rv">'+stat('Total Assets',12)+stat('Healthy',8,C.Low)+stat('At Risk',3,C.High)+stat('Critical',1,C.Critical)+stat('Active Sensors',96,CY)+stat('Upcoming Maintenance',7,BL)+'</div><div class="grid g3 rv" style="margin:18px 0">'+card('Infrastructure Health',gauge(HL,'Health',C.Low))+card('Risk Score',gauge(RB,'Risk Score',C.Medium))+card('Failure Probability',gauge(FP,'Failure Prob.',C.Medium))+'</div><div class="grid g2 rv">'+card('Infrastructure Health Trend',healthTrend())+card('Risk Distribution',riskDist())+card('Sensor Readings (% of warning limit)',line(D.sensors.slice(0,4).map(function(s,i){return ser(s.v/s.w*100,20,28,i*7,8)}),[CY,C.Medium,C.Low,C.High],190))+card('Maintenance Forecast',fcBars())+card('Failure Probability by Component',fpBars())+'</div>'};
+V['digital-twin']=function(){return head('','Select a component of Bridge A. Colour shows risk state.')+'<div class="grid g2 rv" style="grid-template-columns:2fr 1fr"><div>'+twin()+legend+'</div><div class="card glass tp"></div></div>'};
+V['sensor-monitoring']=function(){return '<div class="tabs">'+Object.keys(RG).map(function(k){return '<button class="'+(k==='24H'?'on':'')+'" data-r="'+k+'">'+k+'</button>'}).join('')+'<span class="pill" style="--c:#facc15;margin-left:auto;align-self:center">SIMULATION MODE</span></div><div class="grid g3">'+D.sensors.map(function(s,i){return '<div class="card glass"><h3>'+s.k+'</h3><b class="sv" style="font-size:1.9rem">'+s.v.toFixed(s.d)+' '+s.u+'</b> <span class="ss"></span><div class="sp"></div></div>'}).join('')+'</div><div class="grid g2" style="margin-top:18px">'+card('Combined Sensor Trend','<div class="mc"></div>')+card('Live Model Risk (updates every 2 s)','<div class="lr"></div><p style="color:var(--mu)">Rising vibration + strain + displacement together raise the score.</p>')+'</div>'};
+V['ai-risk-prediction']=function(){var ps=D.parts.filter(function(p){return/^(D1|C4|E2)$/.test(p.id)});return '<div class="grid g4 rv">'+card('Overall Health',gauge(HL,'Health',C.Low))+card('Risk Score',gauge(RB,'Risk Score',C.Medium))+card('Failure Probability',gauge(FP,'Failure Prob.',C.Medium))+card('Risk Level','<div style="font-size:2.2rem;font-weight:800;color:'+C[lvl(RB)]+'">'+lvl(RB).toUpperCase()+'</div><p style="color:var(--mu)">Score = 35% vibration + 35% strain + 30% displacement (normalised).</p>')+'</div><div class="grid g3 rv" style="margin:18px 0">'+ps.map(function(p){return card(p.name,'<b style="font-size:1.8rem">'+p.fp+'%</b> failure probability<br>'+pill(p.risk)+'<p style="color:var(--mu)">'+p.act+'</p>')}).join('')+'</div><div class="grid g2">'+card('Failure Probability by Component',fpBars())+card('Risk Trend',line([ser(30,10,28,9,6)],[C.High]))+'</div>'};
+var KG={n:[['br','Bridge A','Bridge',70,200,'Pune bridge, 28 years old. Health 82%.'],['c4','Column C4','Component',220,90,'Pier column, health 67%, high risk.'],['s14','Sensor S14','Sensor',380,90,'Strain gauge on C4 (simulated).'],['st','Strain','Measurement',540,90,'Currently 410 με, warning limit 400 με.'],['hs','High Strain','Defect',690,90,'Condition when strain exceeds its warning limit.'],['ss','Structural Stress','Defect',690,210,'Sustained overload on the column.'],['fr','Failure Risk','Risk',540,210,'Failure probability 42% for C4.'],['in','Inspection','Inspection',380,210,'Detailed inspection required within 7 days.'],['mt','Maintenance','Maintenance',380,320,'Repair or retrofit planned after inspection.']],
+e:[['br','c4','contains'],['c4','s14','monitored by'],['s14','st','measures'],['st','hs','exceeds limit'],['hs','ss','indicates'],['ss','fr','increases'],['fr','in','requires'],['in','mt','leads to']],
+c:{Bridge:BL,Component:CY,Sensor:'#a78bfa',Measurement:'#38bdf8',Defect:C.High,Risk:C.Critical,Maintenance:C.Low,Inspection:C.Medium}};
+V['knowledge-graph']=function(){var g=function(i){return KG.n.filter(function(n){return n[0]===i})[0]},s='<svg class="chart kg twin" viewBox="0 0 780 390">';
+KG.e.forEach(function(e){var a=g(e[0]),b=g(e[1]);s+='<line x1="'+a[3]+'" y1="'+a[4]+'" x2="'+b[3]+'" y2="'+b[4]+'"/><text class="el" x="'+(a[3]+b[3])/2+'" y="'+((a[4]+b[4])/2-6)+'">'+e[2]+'</text>'});
+KG.n.forEach(function(n){s+='<g data-n="'+n[0]+'"><circle cx="'+n[3]+'" cy="'+n[4]+'" r="30" fill="'+KG.c[n[2]]+'" fill-opacity=".3" stroke="'+KG.c[n[2]]+'" stroke-width="2"/><text x="'+n[3]+'" y="'+(n[4]+4)+'">'+n[1].split(' ').slice(-1)[0]+'</text></g>'});
+return head('','Click a node to see its details.')+'<div class="grid g2" style="grid-template-columns:2fr 1fr">'+'<div>'+s+'</svg><div class="leg">'+Object.keys(KG.c).map(function(k){return '<span><i style="background:'+KG.c[k]+'"></i>'+k+'</span>'}).join('')+'</div></div><div class="card glass kp"><h3>Select a node</h3></div></div>'};
+V['predictive-maintenance']=function(){var pr={Urgent:'Critical',High:'High',Medium:'Medium',Low:'Low'};return '<div class="card glass tw rv"><table><tr>'+['Asset','Component','Risk','Predicted Issue','Recommended Action','Priority','Due'].map(function(h){return '<th>'+h+'</th>'}).join('')+'</tr>'+D.maint.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+pill(r[2])+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td><td>'+pill(pr[r[5]])+' '+r[5]+'</td><td>'+r[6]+'</td></tr>'}).join('')+'</table></div><h2 style="margin:34px 0 14px">Maintenance timeline</h2><div class="tl">'+[['Today','Tower T2 shoring review'],['7 Days','Column C4 detailed inspection'],['30 Days','Expansion Joint E2 replacement'],['90 Days','Deck D1 routine inspection']].map(function(x){return '<div><h3>'+x[0]+'</h3>'+x[1]+'</div>'}).join('')+'</div>'};
+V.alerts=function(){return D.alerts.map(function(a,i){return '<div class="card glass alert" style="--c:'+C[a[0]]+'" data-i="'+i+'"><div class="m">'+pill(a[0])+' <b>'+a[0].toUpperCase()+'</b><br>'+a[1]+'<br><small>'+a[2]+' · '+a[3]+' · <span class="as">New</span></small></div><div>'+['Acknowledge','Investigate','Resolve'].map(function(b){return '<button class="btn sm" data-a="'+b+'">'+b+'</button>'}).join('')+'</div></div>'}).join('')};
+V['infrastructure-assets']=function(){var o=function(id,l,a){return '<select id="'+id+'"><option value="">'+l+'</option>'+a.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select> '};
+return '<div class="tabs">'+o('ft','Asset type',['Bridge','Flyover','Building','Dam'])+o('fr','Risk',['Low','Medium','High','Critical'])+o('fh','Health',['90%+','75–89%','Below 75%'])+o('fa','Age',['Under 20','20–40','Over 40'])+'</div><div class="grid g3 ac"></div>'};
+function assetCards(){var f=['ft','fr','fh','fa'].map(function(i){return $('#'+i).value}),h='';
+D.assets.forEach(function(a,i){var ok=(!f[0]||a[1]===f[0])&&(!f[1]||a[5]===f[1])&&(!f[2]||(f[2]==='90%+'?a[4]>=90:f[2]==='75–89%'?a[4]>=75&&a[4]<90:a[4]<75))&&(!f[3]||(f[3]==='Under 20'?a[3]<20:f[3]==='20–40'?a[3]<=40&&a[3]>=20:a[3]>40));if(!ok)return;
+var li=i?(i*5%27+1)+' '+['Aug','Sept'][i%2]+' 2026':'12 Sept 2026',nx=i?(i*3%27+1)+' '+['Oct','Nov','Dec'][i%3]+' 2026':'19 Oct 2026';
+h+=card(a[0],'<dl class="kv"><dt>Type</dt><dd>'+a[1]+'</dd><dt>Location</dt><dd>'+a[2]+'</dd><dt>Age</dt><dd>'+a[3]+' years</dd><dt>Health</dt><dd>'+a[4]+'%</dd><dt>Risk</dt><dd>'+pill(a[5])+'</dd><dt>Last Inspection</dt><dd>'+li+'</dd><dt>Next Maintenance</dt><dd>'+nx+'</dd></dl>')});
+$('.ac').innerHTML=h||'<p>No assets match these filters. Clear a filter to see more.</p>'}
+V.analytics=function(){return '<div class="grid g2 rv">'+card('Infrastructure Health',healthTrend())+card('Risk Distribution',riskDist())+card('Sensor Anomalies (last 7 days)',bars(days,D.anomalies,C.High))+card('Maintenance Forecast',fcBars())+card('Failure Probability',fpBars())+card('Inspection History',bars(['May','Jun','Jul','Aug','Sep','Oct'],D.inspections,CY))+'</div>'};
+V.technology=function(){var f=['IoT Sensors','Data Collection','Sensor Fusion','Neo4j Knowledge Graph','PyTorch Geometric GNN','Risk Prediction','Digital Twin','Predictive Maintenance'],t=[['Neo4j','Graph database storing assets, sensors and relationships.'],['PyTorch','Deep learning framework for model training.'],['PyTorch Geometric','Graph neural network library.'],['Python','Data pipeline and model code.'],['IoT','Sensor networks for structural data.'],['Machine Learning','Anomaly detection and risk scoring.'],['Knowledge Graph','Connects defects, causes and actions.'],['Digital Twin','Live virtual model of each asset.']];
+return '<div class="flow rv">'+f.map(function(x,i){return (i?'<span>↓</span>':'')+'<div class="card glass">'+x+'</div>'}).join('')+'</div><h2 style="margin:40px 0 16px">Technology stack</h2><div class="grid g4 rv">'+t.map(function(x){return card(x[0],'<span style="color:var(--mu)">'+x[1]+'</span>')}).join('')+'</div>'};
+V.about=function(){return '<div class="card glass rv"><h2>From reactive repair to predictive care</h2><p style="color:var(--mu);max-width:70ch">Resilient Infra-Twin transforms infrastructure maintenance from a reactive process into a predictive, AI-driven system. This site is a demonstration: every sensor value is simulated and no physical sensors are connected.</p><h3 style="margin-top:20px">Objectives</h3><ul>'+['Detect structural anomalies','Monitor infrastructure continuously','Predict potential failures','Improve maintenance planning','Reduce unexpected infrastructure failures','Support engineering decisions'].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>'};
+
+/* ---------- boot ---------- */
+function init(name,root){
+ if(name==='digital-twin'||name==='home')initTwin&&name==='digital-twin'&&initTwin(root);
+ if(name==='sensor-monitoring'){sensorCharts(root,'24H');$$('.tabs button',root).forEach(function(b){b.onclick=function(){$$('.tabs button',root).forEach(function(x){x.classList.remove('on')});b.classList.add('on');sensorCharts(root,b.dataset.r)}});
+  var tick=function(){$$('.card',root).slice(0,6).forEach(function(c,i){var s=D.sensors[i];if(!c.querySelector('.sv'))return;s.v=Math.max(0,s.v+(Math.random()-.5)*s.n*2+(s.base-s.v)*.1);c.querySelector('.sv').textContent=s.v.toFixed(s.d)+' '+s.u;var r=st(s);c.querySelector('.ss').innerHTML=pill(r)+'';c.querySelector('.ss').firstChild.textContent=stl(s)});var r=liveRisk();$('.lr',root).innerHTML=gauge(Math.min(r,100),'Risk Score',C[lvl(r)])+'<div style="text-align:center">Failure probability ≈ '+Math.round(r*.53)+'%</div>'};
+  D.sensors.forEach(function(s){s.base=s.v});tick();setInterval(tick,2000)}
+ if(name==='knowledge-graph')$$('[data-n]',root).forEach(function(g){g.onclick=function(){var n=KG.n.filter(function(x){return x[0]===g.dataset.n})[0],rel=KG.e.filter(function(e){return e[0]===n[0]||e[1]===n[0]}).map(function(e){var o=KG.n.filter(function(x){return x[0]===(e[0]===n[0]?e[1]:e[0])})[0][1];return e[0]===n[0]?'→ '+e[2]+' '+o:o+' '+e[2]+' →'}).join('<br>');$('.kp',root).innerHTML='<h3>'+n[1]+'</h3><span class="pill" style="--c:'+KG.c[n[2]]+'">'+n[2]+'</span><p>'+n[5]+'</p><p style="color:var(--mu)">'+rel+'</p>'}});
+ if(name==='alerts')$$('[data-a]',root).forEach(function(b){b.onclick=function(){var c=b.closest('.alert'),m={Acknowledge:'Acknowledged',Investigate:'Under investigation',Resolve:'Resolved'};c.querySelector('.as').textContent=m[b.dataset.a];c.classList.toggle('done',b.dataset.a==='Resolve')}});
+ if(name==='infrastructure-assets'){$$('select',root).forEach(function(s){s.onchange=assetCards});assetCards()}
+}
+document.addEventListener('DOMContentLoaded',function(){
+ var r=$('[data-view]');if(r){var n=r.dataset.view;if(V[n]){r.innerHTML=V[n]();init(n,r)}}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})});$$('.rv').forEach(function(e){io.observe(e)});
+ var tg=$('.tg');if(tg)tg.onclick=function(){var o=$('.nav').classList.toggle('open');tg.setAttribute('aria-expanded',o)};
+});
+})();
+</script></body></html>
